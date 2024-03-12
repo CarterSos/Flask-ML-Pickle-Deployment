@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zoo Animals Database</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 20px; /* Add margins */
+        padding: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      table {
+        width: calc(100% - 40px); /* Adjust width to accommodate margins */
+        border-collapse: collapse;
+        margin-top: 20px;
+        border: 1px solid #000; /* Add black border around the table */
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #000; /* Add black border */
+        border-left: 1px solid #000; /* Add left border */
+        border-right: 1px solid #000; /* Add right border */
+        text-align: left;
+      }
+
+      th {
+        background-color: #fff; /* White background */
+        color: #333;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: none; /* Remove border from last column */
+      }
+
+      td:last-child {
+        background-color: #d0ffd0; /* Light green background for the prediction column */
+      }
+
+      tr:hover {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Zoo Animals Database</h1>
+    <h4 style="text-align: center">
+      Predictions are made on .sqlite database and are 90% accurate.
+    </h4>
+    <h4 style="text-align: center">See all incorrect predictions below.</h4>
+    <table>
+      <tr>
+        <th>Animal Name</th>
+        <th>Hair</th>
+        <th>Feathers</th>
+        <th>Eggs</th>
+        <th>Milk</th>
+        <th>Airborne</th>
+        <th>Aquatic</th>
+        <th>Predator</th>
+        <th>Toothed</th>
+        <th>Backbone</th>
+        <th>Breathes</th>
+        <th>Venomous</th>
+        <th>Fins</th>
+        <th>Legs</th>
+        <th>Tail</th>
+        <th>Domestic</th>
+        <th>Catsize</th>
+        <th>Class Type</th>
+        <th>Prediction</th>
+      </tr>
+      {% for i in range(data|length) %}
+      <tr>
+        <td>{{ data[i][0] }}</td>
+        <td>{{ data[i][1] }}</td>
+        <td>{{ data[i][2] }}</td>
+        <td>{{ data[i][3] }}</td>
+        <td>{{ data[i][4] }}</td>
+        <td>{{ data[i][5] }}</td>
+        <td>{{ data[i][6] }}</td>
+        <td>{{ data[i][7] }}</td>
+        <td>{{ data[i][8] }}</td>
+        <td>{{ data[i][9] }}</td>
+        <td>{{ data[i][10] }}</td>
+        <td>{{ data[i][11] }}</td>
+        <td>{{ data[i][12] }}</td>
+        <td>{{ data[i][13] }}</td>
+        <td>{{ data[i][14] }}</td>
+        <td>{{ data[i][15] }}</td>
+        <td>{{ data[i][16] }}</td>
+        <td>{{ class_type_dict[data[i][17]] }}</td>
+        <td>{{ predictions[i] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <!-- Second Table: Showing Rows with Mismatches Only -->
+    <br />
+    <h2>Incorrect Predictions</h2>
+    <table>
+      <tr>
+        <th>Animal Name</th>
+        <th>Hair</th>
+        <th>Feathers</th>
+        <th>Eggs</th>
+        <th>Milk</th>
+        <th>Airborne</th>
+        <th>Aquatic</th>
+        <th>Predator</th>
+        <th>Toothed</th>
+        <th>Backbone</th>
+        <th>Breathes</th>
+        <th>Venomous</th>
+        <th>Fins</th>
+        <th>Legs</th>
+        <th>Tail</th>
+        <th>Domestic</th>
+        <th>Catsize</th>
+        <th>Class Type</th>
+        <th>Prediction</th>
+      </tr>
+      {% for i in range(data|length) %} {% if class_type_dict[data[i][17]] != predictions[i] %}
+      <tr>
+        <td>{{ data[i][0] }}</td>
+        <td>{{ data[i][1] }}</td>
+        <td>{{ data[i][2] }}</td>
+        <td>{{ data[i][3] }}</td>
+        <td>{{ data[i][4] }}</td>
+        <td>{{ data[i][5] }}</td>
+        <td>{{ data[i][6] }}</td>
+        <td>{{ data[i][7] }}</td>
+        <td>{{ data[i][8] }}</td>
+        <td>{{ data[i][9] }}</td>
+        <td>{{ data[i][10] }}</td>
+        <td>{{ data[i][11] }}</td>
+        <td>{{ data[i][12] }}</td>
+        <td>{{ data[i][13] }}</td>
+        <td>{{ data[i][14] }}</td>
+        <td>{{ data[i][15] }}</td>
+        <td>{{ data[i][16] }}</td>
+        <td>{{ class_type_dict[data[i][17]] }}</td>
+        <td>{{ predictions[i] }}</td>
+      </tr>
+      {% endif %} {% endfor %}
+    </table>
+  </br>
+  <!-- Third Table: Showing Predicted Reptiles -->
+  <br />
+  <h2>Reptile Predictions</h2>
+  <table>
+    <tr>
+      <th>Animal Name</th>
+      <th>Hair</th>
+      <th>Feathers</th>
+      <th>Eggs</th>
+      <th>Milk</th>
+      <th>Airborne</th>
+      <th>Aquatic</th>
+      <th>Predator</th>
+      <th>Toothed</th>
+      <th>Backbone</th>
+      <th>Breathes</th>
+      <th>Venomous</th>
+      <th>Fins</th>
+      <th>Legs</th>
+      <th>Tail</th>
+      <th>Domestic</th>
+      <th>Catsize</th>
+      <th>Class Type</th>
+      <th>Prediction</th>
+    </tr>
+    {% for i in range(data|length) %} {% if predictions[i] == 'reptile' %}
+    <tr>
+      <td>{{ data[i][0] }}</td>
+      <td>{{ data[i][1] }}</td>
+      <td>{{ data[i][2] }}</td>
+      <td>{{ data[i][3] }}</td>
+      <td>{{ data[i][4] }}</td>
+      <td>{{ data[i][5] }}</td>
+      <td>{{ data[i][6] }}</td>
+      <td>{{ data[i][7] }}</td>
+      <td>{{ data[i][8] }}</td>
+      <td>{{ data[i][9] }}</td>
+      <td>{{ data[i][10] }}</td>
+      <td>{{ data[i][11] }}</td>
+      <td>{{ data[i][12] }}</td>
+      <td>{{ data[i][13] }}</td>
+      <td>{{ data[i][14] }}</td>
+      <td>{{ data[i][15] }}</td>
+      <td>{{ data[i][16] }}</td>
+      <td>{{ class_type_dict[data[i][17]] }}</td>
+      <td>{{ predictions[i] }}</td>
+    </tr>
+    {% endif %} {% endfor %}
+  </table>
+  </body>
+</html>

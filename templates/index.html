@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animal Class Prediction</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: "", sans-serif;
+        background-color: #f7f7f7;
+      }
+      .login {
+        width: 600px;
+        margin: 0 auto;
+        margin-top: 50px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-family: "Roboto";
+        text-align: center;
+        color: #333;
+      }
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      input[type="text"] {
+        width: calc(50% - 10px);
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      button[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <h1>Animal Class Prediction</h1>
+
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="hair" placeholder="Hair" required="required" />
+        <input
+          type="text"
+          name="feathers"
+          placeholder="Feathers"
+          required="required"
+        />
+        <input type="text" name="eggs" placeholder="Eggs" required="required" />
+        <input type="text" name="milk" placeholder="Milk" required="required" />
+        <input
+          type="text"
+          name="airborne"
+          placeholder="Airborne"
+          required="required"
+        />
+        <input
+          type="text"
+          name="aquatic"
+          placeholder="Aquatic"
+          required="required"
+        />
+        <input
+          type="text"
+          name="predator"
+          placeholder="Predator"
+          required="required"
+        />
+        <input
+          type="text"
+          name="toothed"
+          placeholder="Toothed"
+          required="required"
+        />
+        <input
+          type="text"
+          name="backbone"
+          placeholder="Backbone"
+          required="required"
+        />
+        <input
+          type="text"
+          name="breathes"
+          placeholder="Breathes"
+          required="required"
+        />
+        <input
+          type="text"
+          name="venomous"
+          placeholder="Venomous"
+          required="required"
+        />
+        <input type="text" name="fins" placeholder="Fins" required="required" />
+        <input type="text" name="legs" placeholder="Legs" required="required" />
+        <input type="text" name="tail" placeholder="Tail" required="required" />
+        <input
+          type="text"
+          name="domestic"
+          placeholder="Domestic"
+          required="required"
+        />
+        <input
+          type="text"
+          name="catsize"
+          placeholder="Catsize"
+          required="required"
+        />
+
+        <button type="submit">Predict</button>
+      </form>
+      <div class="animal-image">
+        {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+        {% if prediction_text == "The predicted animal is a mammal." %}
+        <img src="/static/images/mammal_image.jpg" alt="Mammal Image" />
+        {% elif prediction_text == "The predicted animal is a bird." %}
+        <img src="/static/images/bird_image.jpg" alt="Bird Image" />
+        {% elif prediction_text == "The predicted animal is a reptile." %}
+        <img src="/static/images/reptile_image.jpg" alt="Reptile Image" />
+        {% elif prediction_text == "The predicted animal is a fish." %}
+        <img src="/static/images/fish_image.jpg" alt="Fish Image" />
+        {% elif prediction_text == "The predicted animal is a amphibian." %}
+        <img src="/static/images/amphibian_image.jpg" alt="Amphibian Image" />
+        {% elif prediction_text == "The predicted animal is a bug." %}
+        <img src="/static/images/bug_image.jpg" alt="Bug Image" />
+        {% elif prediction_text == "The predicted animal is a invertebrate." %}
+        <img
+          src="/static/images/invertebrate_image.jpg"
+          alt="Invertebrate Image"
+        />
+        {% endif %} {% endif %}
+      </div>
+
+      <br />
+      <br />
+      <a href="/database">View Database</a>
+    </div>
+  </body>
+</html>
